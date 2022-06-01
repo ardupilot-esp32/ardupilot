@@ -27,7 +27,7 @@ using namespace ESP32;
 #define MHZ (1000U*1000U)
 #define KHZ (1000U)
 
-#define SPIDEBUG 1
+//#define SPIDEBUG 1
 
 SPIDeviceDesc device_desc[] = {HAL_ESP32_SPI_DEVICES};
 SPIBusDesc bus_desc[] = {HAL_ESP32_SPI_BUSES};
