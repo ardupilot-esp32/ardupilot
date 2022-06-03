@@ -146,7 +146,7 @@
 // device=x must start from ZERO and increment.
 #define HAL_ESP32_SPI_DEVICES \
     {.name="bmp280", .bus=0, .device=0, .cs=GPIO_NUM_33,  .mode = 3, .lspeed=1*MHZ, .hspeed=1*MHZ},\
-    {.name="mpu9250", .bus=0, .device=1, .cs=GPIO_NUM_21,  .mode = 0, .lspeed=1*MHZ, .hspeed=8*MHZ}
+    {.name="mpu9250", .bus=0, .device=1, .cs=GPIO_NUM_21,  .mode = 0, .lspeed=2*MHZ, .hspeed=8*MHZ}
 //#define HAL_ESP32_SPI_DEVICES {}
 
 //I2C bus list
