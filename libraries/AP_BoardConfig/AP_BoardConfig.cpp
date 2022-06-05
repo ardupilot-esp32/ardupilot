@@ -43,6 +43,12 @@
 #endif
 #endif
 
+#if CONFIG_HAL_BOARD == HAL_BOARD_ESP32
+#ifndef BOARD_SAFETY_ENABLE_DEFAULT
+# define BOARD_SAFETY_ENABLE_DEFAULT 0
+#endif
+#endif
+
 #ifndef HAL_IMU_TEMP_DEFAULT
 #define HAL_IMU_TEMP_DEFAULT       -1 // disabled
 #endif
