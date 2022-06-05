@@ -56,7 +56,7 @@ void UARTDriver::vprintf(const char *fmt, va_list ap)
     } else {
         AP_HAL::UARTDriver::vprintf(fmt, ap);
     }
-    hal.scheduler->delay_microseconds(10000);// time for hw to flush while holding sem ?
+    //hal.scheduler->delay_microseconds(10000);// time for hw to flush while holding sem ?
     // todo use ets_printf 
 }
 
