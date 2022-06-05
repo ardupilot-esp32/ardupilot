@@ -90,7 +90,7 @@
 //https://docs.espressif.com/projects/esp-idf/en/release-v4.4/esp32s3/api-reference/peripherals/adc.html#adc-api-reference-gpio-lookup-macros
 #define HAL_ESP32_ADC_PINS HAL_ESP32_ADC_PINS_OPTION1
 
-#
+#define HAL_NUM_CAN_IFACES 0
 
 #define HAL_PROBE_EXTERNAL_I2C_COMPASSES 0
 

@@ -48,7 +48,7 @@
 
 //#include "CAN/CAN.h"
 
-//#if HAL_NUM_CAN_IFACES
+#if HAL_NUM_CAN_IFACES > 0
 
 //#include "bxcan.hpp" ChibiOs uses bxcan as low-level interface, esp32 uses twai,
 // see https://github.com/espressif/esp-idf/blob/master/components/driver/include/driver/twai.h
@@ -270,5 +270,5 @@ protected:
         return self_index_;
     }
 };
-//#endif //HAL_NUM_CAN_IFACES
+#endif //HAL_NUM_CAN_IFACES
 

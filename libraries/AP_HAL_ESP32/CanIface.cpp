@@ -2,7 +2,7 @@
 
 #include "AP_HAL_ESP32.h"
 
-//#if HAL_NUM_CAN_IFACES
+#if HAL_NUM_CAN_IFACES > 0
 #include <cassert>
 #include <cstring>
 #include <AP_Math/AP_Math.h>
@@ -937,4 +937,4 @@ extern "C"
 } // extern "C"
 
 
-//#endif //HAL_NUM_CAN_IFACES
+#endif //HAL_NUM_CAN_IFACES
