@@ -2196,6 +2196,7 @@ def write_ADC_config(f):
     if vdd[-1] == 'U':
         vdd = vdd[:-1]
     vdd = float(vdd) * 0.01
+    f.write('#define HAL_USE_ADC TRUE \n')
     f.write('#define HAL_ANALOG_PINS { \\\n')
     for (chan, scale, label, portpin) in adc_chans:
         scale_str = '%.2f/4096' % vdd
