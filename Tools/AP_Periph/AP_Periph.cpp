@@ -46,6 +46,8 @@ void stm32_watchdog_pat() {}
 #endif
 
 #if CONFIG_HAL_BOARD == HAL_BOARD_ESP32
+#include <esp_task_wdt.h>
+#include <AP_HAL_ESP32/AP_HAL_ESP32.h>
 void stm32_watchdog_init() {}
 void stm32_watchdog_pat() { esp_task_wdt_reset(); }   
 //Each subscribed task must periodically call esp_task_wdt_reset() to reset the TWDT
