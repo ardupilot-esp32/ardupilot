@@ -336,7 +336,7 @@ void AP_Periph_FW::show_stack_free()
 #endif
 
 
-
+// this is the main 'periph' loop() function that is called repeatedly as-fast as the scheduler can.
 void AP_Periph_FW::update()
 {
     static uint32_t last_led_ms;
@@ -344,7 +344,7 @@ void AP_Periph_FW::update()
     if (now - last_led_ms > 1000) {
         last_led_ms = now;
 #ifdef HAL_GPIO_PIN_LED
-        if (!no_iface_finished_dna) {
+        if (has_any_iface_finished_dna >0) {
             palToggleLine(HAL_GPIO_PIN_LED);
         }
 #endif
