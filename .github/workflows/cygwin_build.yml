@@ -15,8 +15,8 @@ jobs:
           submodules: 'recursive'
       - uses: cygwin/cygwin-install-action@master
         with:
-          packages: install cygwin32-gcc-g++ python37 python37-future python37-lxml python37-pip python37-setuptools python37-wheel git libexpat procps gettext
-      - name: Install cygwin
+          packages: gcc-g++=10.2.0-1 python37 python37-future python37-lxml python37-pip python37-setuptools python37-wheel git procps gettext
+      - name: Prepare Python environment
         env:
           HOME: ${{ runner.workspace }}/ardupilot
         run: |
