@@ -38,21 +38,39 @@ cp -v build/sitl/bin/ardurover artifacts/ArduHeli.elf
 cp -v build/sitl/bin/ardurover artifacts/ArduRover.elf
 cp -v build/sitl/bin/ardurover artifacts/ArduSub.elf
 
-cp -v /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll artifacts/
+#cp -v /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll artifacts/
 
 ls -lrt /usr/*.dll
 ls -lrt /usr/bin/*.dll
 ls -lrt build/sitl/bin/*.dll
-ls -lrt /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll
-ls -lrt $(cygpath ${SYSTEMROOT})/system32/*.dll
-ls -lrt $(cygpath ${SYSTEMROOT})/*.dll
+#ls -lrt /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll
+#ls -lrt $(cygpath ${SYSTEMROOT})/system32/*.dll
+#ls -lrt $(cygpath ${SYSTEMROOT})/*.dll
 
-cp -v /usr/*.dll artifacts/
+#cp -v /usr/*.dll artifacts/
 cp -v /usr/bin/*.dll artifacts/
-cp -v build/sitl/bin/*.dll artifacts/
-cp -v /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll artifacts/
-cp -v $(cygpath ${SYSTEMROOT})/system32/*.dll artifacts/
-cp -v $(cygpath ${SYSTEMROOT})/*.dll artifacts/
+#cp -v build/sitl/bin/*.dll artifacts/
+#cp -v /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll artifacts/
+#cp -v $(cygpath ${SYSTEMROOT})/system32/*.dll artifacts/
+#cp -v $(cygpath ${SYSTEMROOT})/*.dll artifacts/
+
+# Find all cyg*.dll files returned by cygcheck for each exe in artifacts
+# and copy them over
+for exe in artifacts/*.exe; do 
+    echo $exe
+    cygcheck $exe | grep -oP 'cyg[^\s\\/]+\.dll' | while read -r line; do
+      cp -v /usr/bin/$line artifacts/
+    done
+done
+
+
+cp  /usr/bin/cygwin1.dll artifacts/
+cp  /usr/bin/cyggcc_s-seh-1.dll artifacts/
+cp  /usr/bin/cygstdc++-6.dll artifacts/
+
+cp  -vH /usr/bin/cygwin1.dll artifacts/
+cp  -vH /usr/bin/cyggcc_s-seh-1.dll artifacts/
+cp  -vH /usr/bin/cygstdc++-6.dll artifacts/
 
 git log -1 > artifacts/git.txt
 ls -l artifacts/
