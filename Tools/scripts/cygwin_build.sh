@@ -19,30 +19,40 @@ mkdir artifacts
 
 (
     python ./waf --color yes --toolchain $TOOLCHAIN --board sitl configure 2>&1
-    python ./waf plane 2>&1
-    python ./waf copter 2>&1
-    python ./waf heli 2>&1
     python ./waf rover 2>&1
-    python ./waf sub 2>&1
 ) | tee artifacts/build.txt
 
 $GPP_COMPILER -print-sysroot
 
 # copy both with exe and without to cope with differences
 # between windows versions in CI
-cp -v build/sitl/bin/arduplane artifacts/ArduPlane.elf.exe
-cp -v build/sitl/bin/arducopter artifacts/ArduCopter.elf.exe
-cp -v build/sitl/bin/arducopter-heli artifacts/ArduHeli.elf.exe
+cp -v build/sitl/bin/ardurover artifacts/ArduPlane.elf.exe
+cp -v build/sitl/bin/ardurover artifacts/ArduCopter.elf.exe
+cp -v build/sitl/bin/ardurover artifacts/ArduHeli.elf.exe
 cp -v build/sitl/bin/ardurover artifacts/ArduRover.elf.exe
-cp -v build/sitl/bin/ardusub artifacts/ArduSub.elf.exe
+cp -v build/sitl/bin/ardurover artifacts/ArduSub.elf.exe
 
-cp -v build/sitl/bin/arduplane artifacts/ArduPlane.elf
-cp -v build/sitl/bin/arducopter artifacts/ArduCopter.elf
-cp -v build/sitl/bin/arducopter-heli artifacts/ArduHeli.elf
+cp -v build/sitl/bin/ardurover artifacts/ArduPlane.elf
+cp -v build/sitl/bin/ardurover artifacts/ArduCopter.elf
+cp -v build/sitl/bin/ardurover artifacts/ArduHeli.elf
 cp -v build/sitl/bin/ardurover artifacts/ArduRover.elf
-cp -v build/sitl/bin/ardusub artifacts/ArduSub.elf
+cp -v build/sitl/bin/ardurover artifacts/ArduSub.elf
 
 cp -v /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll artifacts/
+
+ls -lrt /usr/*.dll
+ls -lrt /usr/bin/*.dll
+ls -lrt build/sitl/bin/*.dll
+ls -lrt /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll
+ls -lrt $(cygpath ${SYSTEMROOT})/system32/*.dll
+ls -lrt $(cygpath ${SYSTEMROOT})/*.dll
+
+cp -v /usr/*.dll artifacts/
+cp -v /usr/bin/*.dll artifacts/
+cp -v build/sitl/bin/*.dll artifacts/
+cp -v /usr/$TOOLCHAIN/sys-root/usr/bin/*.dll artifacts/
+cp -v $(cygpath ${SYSTEMROOT})/system32/*.dll artifacts/
+cp -v $(cygpath ${SYSTEMROOT})/*.dll artifacts/
 
 git log -1 > artifacts/git.txt
 ls -l artifacts/
