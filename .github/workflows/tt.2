@@ -1,0 +1,18 @@
+[ 138/1283] Compiling libraries/AP_Camera/AP_Camera_Scripting.cpp
+[ 139/1283] Compiling libraries/AP_Camera/AP_Camera_Relay.cpp
+[ 140/1283] Compiling libraries/AP_Camera/AP_Camera_Params.cpp
+[ 141/1283] Compiling libraries/AP_Camera/AP_Camera_Mount.cpp
+In file included from ../../libraries/AP_Camera/AP_RunCam.h:36,
+                 from ../../libraries/AP_Camera/AP_RunCam.cpp:24:
+../../libraries/AP_OSD/AP_OSD.h:250:9: error: "AP_RSSI_ENABLED" is not defined, evaluates to 0 [-Werror=undef]
+  250 |     #if AP_RSSI_ENABLED
+      |         ^~~~~~~~~~~~~~~
+compilation terminated due to -Wfatal-errors.
+cc1plus: all warnings being treated as errors
+
+Build failed
+ -> task in 'objs/AP_Camera' failed (exit status 1): 
+	{task 140417596232576: cxx AP_RunCam.cpp -> AP_RunCam.cpp.0.o}
+ (run with -v to display more information)
+Waf: Leaving directory `/__w/ardupilot/ardupilot/build/sitl'
+Error: Process completed with exit code 1.

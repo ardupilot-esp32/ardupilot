@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # if you have modules/esp_idf setup as a submodule, then leave it as a submodule and switch branches
 if [ ! -d modules ]; then
@@ -7,6 +7,8 @@ exit 1
 fi
 echo `ls modules`
 cd modules
+
+# this script doesn't use Tools/gittools/submodule-sync.sh  as we want to use a shallow --depth for esp32
 
 if [ ! -d esp_idf ]; then
     echo 'did not find modules/esp_idf folder, making it.' ; 
@@ -17,7 +19,8 @@ fi
 echo "looking for submodule or repo..."
 if [ `git submodule | grep esp_idf | wc | cut -c1-7` == '1'  ]; then 
     echo "found real submodule, syncing"
-    ../Tools/gittools/submodule-sync.sh >/dev/null
+    git submodule update --recursive --force --init --depth 10 >/dev/null
+    git submodule sync --recursive   >/dev/null
 else
     echo "esp_idf is NOT a submodule"
 
@@ -25,7 +28,7 @@ else
         echo "found empty IDF, cloning"
         # add esp_idf as almost submodule, depths  uses less space
         #git clone -b v4.4 --single-branch --depth 10 https://github.com/espressif/esp-idf.git esp_idf
-        git clone -b 'release/v4.4'  https://github.com/espressif/esp-idf.git esp_idf
+        git clone -b 'release/v4.4' --depth 10  https://github.com/espressif/esp-idf.git esp_idf
         git checkout 6d853f
         # check if we've got v4.4 checked out, only this version of esp_idf is tested and works?
         
@@ -42,7 +45,8 @@ if [ `git rev-parse HEAD` == '6d853f0525b003afaeaed4fb59a265c8522c2da9' ]; then
     echo "IDF version 'release/4.4' found OK, great."; 
 else
     echo "looks like an idf, but not v4.4 branch, or wrong commit , trying to switch branch and reflect upstream";
-    ../../Tools/gittools/submodule-sync.sh >/dev/null
+    git submodule update --recursive --force --init --depth 10 >/dev/null
+    git submodule sync --recursive   >/dev/null
     git fetch ; git checkout -f release/v4.4 
     git checkout 6d853f
 
@@ -56,7 +60,8 @@ fi
 cd ../..
 
 cd modules/esp_idf 
-git submodule update --init --recursive
+git submodule update --recursive --force --init --depth 10 >/dev/null
+git submodule sync --recursive   >/dev/null
 cd ../..
 echo "after changing IDF versions [ such as between 4.2 and 4.4 ] you should re-run these in your console:"
 echo "./modules/esp_idf/install.sh"

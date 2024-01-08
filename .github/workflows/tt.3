@@ -1,0 +1,12 @@
+2024-01-08T21:34:06.6077441Z AT-0389.8: Writing test result in jUnit format to autotest_result_ArduSub_test.Sub_junit.xml
+2024-01-08T21:34:06.6078156Z 
+2024-01-08T21:34:06.6078391Z >>>> FAILED STEP: test.Sub at Mon Jan  8 21:34:06 2024
+2024-01-08T21:34:06.6078977Z Failure Summary:
+2024-01-08T21:34:06.6079338Z   test.Sub:
+2024-01-08T21:34:06.6080887Z     TestLogDownloadMAVProxyNetwork (Download latest log over network port) (120) (see /tmp/buildlogs/ArduSub-TestLogDownloadMAVProxyNetwork.txt) (duration 150.90256476402283 s)
+2024-01-08T21:34:06.6082447Z FAILED 1 tests: ['test.Sub']
+2024-01-08T21:34:06.6746682Z ##[error]Process completed with exit code 1.
+2024-01-08T21:34:06.6806092Z ##[group]Run actions/upload-artifact@v3
+2024-01-08T21:34:06.6806455Z with:
+2024-01-08T21:34:06.6806694Z   name: fail-sitltest-sub
+2024-01-08T21:34:06.6807721Z   path: /tmp/buildlogs
